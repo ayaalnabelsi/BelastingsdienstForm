@@ -1,0 +1,52 @@
+
+body{
+    padding-top: 1em;
+}
+
+header{
+    background-color:#ffc917;
+}
+
+fieldset:first-of-type {
+    display: flex;
+    flex-direction: column;
+}
+
+
+input:invalid{
+   
+    color:#0063D3;
+}
+
+input:valid{
+
+    color:#0063D3;
+}
+
+label{
+    color: #003082;
+    font-weight: bold;
+}
+
+
+fieldset:last-of-type{
+    display: flex;
+   flex-direction: column;
+}
+footer{
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    border: 0.3em solid #003082;
+    background-color: #ffc917;
+}
+
+input{
+    border: 0.2em solid #003082;
+}
+
+form{
+    border: none;
+}
