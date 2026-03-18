@@ -1,52 +1,378 @@
-
-body{
-    padding-top: 1em;
+@font-face {
+  font-family: "nssans-regular";
+  src: url("../fonts/nssans-regular.woff2");
+  font-weight: 300;
 }
 
-header{
-    background-color:#ffc917;
+@font-face {
+  font-family: "nssans-bold";
+  src: url("../fonts/nssans-bold.woff2");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "nssans-italic";
+  src: url("../fonts/nssans-italic.woff2");
+}
+
+@font-face {
+  font-family: "nssans-bolditalic";
+  src: url("../fonts/nssans-bolditalic.woff2");
+}
+
+@font-face {
+  font-family: "nssans-demi";
+  src: url("../fonts/nssans-demi.woff2");
+}
+
+body {
+  font-family: "nssans-bold";
+  background-color: #f5f5f5;
+  line-height: 1.6;
+  /* margin-bottom: 3%; */
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  width: 550px;
+  margin: 2em;
+  padding: 1.5em;
+  background-color: #ffffff;
+  border-radius: 2em;
+}
+
+header {
+  border-top: 2em solid #ffcc00;
+}
+
+h1 {
+  justify-self: center;
+  color: #003082;
+  font-weight: bold;
+  font-family: "nssans-bold", Arial, sans-serif;
+  padding-bottom: 1em;
+  font-size: 2em;
+  border-bottom: 0.2em solid #ffcc00;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+form {
+  border: none;
+  border-radius: 2em;
+  background-color: #ffffff1f;
+}
+
+div {
+  background-color: #f3f5f7;
+  border-radius: 1em;
+  margin-block: 1em;
+  border-bottom: 0.2em solid #ffcc00;
+  border-top: 0.4em solid #ffcc00;
+}
+/* div:has(fieldset:valid) {
+    background-color: #bae4a3;
+  }
+   */
+   /* fieldset:has(input:user-valid) {
+    background-color: #e6f7dc;
+    border-left: 5px solid seagreen;
+  } */
+
+fieldset {
+ border: none;
+  padding-bottom: 1.2em;
+  font-size: 1.2em; 
+
+  legend {
+    font-family: "nssans-bold";
+    color: #003d99;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    line-height: 1.6;
+    margin-bottom: 0.3em;
+  }
+
+  input {
+    border: 0.1em solid #003082;
+    border-radius: 0.3em;
+    padding: 0.7em;
+  }
+
+  label {
+    /*/* elk label op een nieuwe regel */
+    display: block;
+    color: #003082;
+    justify-content: center;
+    margin: 0.4em;
+    cursor: pointer;
+    margin-bottom: 0.5em;
+    gap: 0.25em;
+  }
 }
 
 fieldset:first-of-type {
     display: flex;
     flex-direction: column;
+    margin-bottom: 3em;
+  
+  }
+
+
+/*VALIDATIE*/
+fieldset:valid {
+        background-color: #e6f7dc;
+        border-left: 4px solid seagreen;
+        border-radius: 1em;
+  }
+  
+  fieldset:invalid p {
+    display: none;
+  }
+
+input {
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.25);
+  }
+
+  &:valid {
+    border-color: seagreen;
+
+    &:focus {
+      box-shadow: 0 0 0 3px hsla(90, 70%, 50%, 1);
+    }
+  }
+
+  &:invalid {
+    background: #ffe6e6;
+  }
+
+  &:user-valid {
+    border-color: seagreen;
+  }
+
+  &:user-invalid {
+    border-color: red;
+  }
+
+  &[type="number"] {
+    display: block;
+    width: 100%;
+    margin: 0.5em 0 0.7em;
+  }
+
+  &[type="radio"] {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    border: 0.1em solid blue;
+    appearance: none;
+    cursor: pointer;
+
+    &:checked {
+      background-image: radial-gradient(#ffcc00 0.5em, transparent 0);
+      border-color: #003082;
+    }
+  }
 }
 
-
-input:invalid{
-   
-    color:#0063D3;
+/*Pattern in en uitklappen*/
+/*Alle vragen verbergen*/
+#VoorwaardeVragen,
+#verrekenbeding,
+#Datumhuwelijks,
+#kinderVragen,
+#zelfKinderen,
+#Opmerking,
+#notaris {
+  display: none;
 }
 
-input:valid{
-
-    color:#0063D3;
+/*Vraag 1B*/
+body:has(#jaGetrouwd:checked) #VoorwaardeVragen,
+body:has(#jaGetrouwd:checked) #verrekenbeding,
+body:has(#jaGetrouwd:checked) #Datumhuwelijks {
+  display: block;
+  max-height: 500px;
+  transition: max-height 0.9s ease, opacity 0.3s ease;
 }
 
-label{
-    color: #003082;
-    font-weight: bold;
+body:has(#neeGetrouwd:checked) #vraagKinderen,
+body:has(#neeGetrouwd:checked) #kinderVragen,
+body:has(#neeGetrouwd:checked) #zelfKinderen {
+  display: block;
+  max-height: 500px;
+  opacity: 1;
 }
 
-
-fieldset:last-of-type{
-    display: flex;
-   flex-direction: column;
-}
-footer{
-    display: flex;
-    justify-content: center;
+/*Vraag  1B 2*/
+body:has(#neeVoorwaarde:checked) #vraagKinderen,
+body:has(#neeVoorwaarde:checked) #kinderVragen,
+body:has(#neeVoorwaarde:checked) #zelfKinderen {
+  display: block;
 }
 
-main {
-    border: 0.3em solid #003082;
+body:has(#neeVoorwaarde:checked) #verrekenbeding,
+body:has(#neeVoorwaarde:checked) #Datumhuwelijks {
+  display: none;
+}
+
+/*1C*/
+body:has(#jaKinderen:checked) #kinderVragen {
+  display: block;
+}
+
+body:has(#jaEerderoverleden:checked) #zelfKinderen {
+  display: block;
+}
+
+body:has(#jaTestament:checked) #Opmerking {
+  display: block;
+}
+
+body:has(#jaTestament:checked) #notaris {
+  display: flex;
+  flex-direction: column;
+}
+
+/*https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:has*/
+
+p {
+  color: #0063d3;
+  font-size: small;
+}
+
+/*BUTTONS*/
+/*Voeg verkrijger button*/
+.pattern2 div:nth-of-type(2) {
+  align-self: center;
+  border-top: none;
+  border-bottom: none;
+  background-color: inherit;
+
+  button {
+    background-color: #003082;
+    color: white;
+    padding: 0.5em;
+    padding-inline: 0.9em;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0953a9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/*Terug en vrezend button*/
+.pattern2 footer div {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6em;
+  margin-bottom: 4em;
+  border-top: none;
+  border-bottom: none;
+  background-color: inherit;
+
+  a,
+  button {
     background-color: #ffc917;
-}
-
-input{
-    border: 0.2em solid #003082;
-}
-
-form{
+    color: #003082;
     border: none;
+    border-radius: 0.4em;
+    padding: 0.8em;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #cea213;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &:focus {
+      outline: 3px solid #003082;
+      outline-offset: 2px;
+    }
+  }
+
+  a:first-of-type {
+    padding-left: 0.9em;
+    padding-right: 0.9em;
+  }
+}
+
+/*Verder knop*/
+.index footer div {
+  border-top: none;
+  border-bottom: none;
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+
+  a {
+    background-color: #ffc917;
+    color: #003082;
+    border: none;
+    border-radius: 0.4em;
+    padding: 0.8em;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #cea213;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+
+@media (min-width: 48em) {
+   
+    main {
+    
+      width: 60%;          
+      margin: 0 auto;  
+      padding: 2em;
+    }
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 2em;          
+    }
+
+    fieldset {
+        flex-direction: column;
+        align-items: flex-start; 
+        gap: 0.8em;
+        font-size: 1.4em;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"] {
+      width: 90%;  
+    }
+  
+    fieldset input[type="radio"] {
+      width: 2em;
+      height: 2em;
+      margin-right: 0.5em;
+    }
+
+    footer a{
+        padding: 1em;
+
+    }
+  
+
 }

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Aya Alnabelsi">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="style/style.css" rel="stylesheet">
+  <title>Gegevens Verkrijgers</title>
+</head>
+
+<body class="pattern2">
+
+  <header>
+    <h1> Aangifte Erfbelastig 2025 </h1>
+  </header>
+
+ <main>
+  <form>
+
+    <!-- Eerste verkrijger -->
+    <div>
+      <fieldset class="verkrijger">
+        <legend>Verkrijger 1</legend>
+
+        <label for="bsnRsin">Bsn/RSIN</label>
+        <input type="text" id="bsnRsin" name="bsnRsin[]" pattern="[0-9]{9}" maxlength="9" inputmode="numeric" required>
+
+        <label for="voorletters">Voorletter(s)</label>
+        <input maxlength="9" required type="text" name="voorletters[]">
+
+        <label for="tussen-voegsel">Tussen-voegsel(s)</label>
+        <input maxlength="8" type="text" name="tussen-voegsel[]">
+
+        <label for="achternaam">Achternaam</label>
+        <input maxlength="10" required type="text" name="achternaam[]">
+
+        <fieldset>
+          <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
+          <label><input required type="radio" name="hele-vermogen-0" value="yes"> Ja</label>
+          <label><input required type="radio" name="hele-vermogen-0" value="no"> Nee</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Doet deze verkrijger een beroep op diens legitieme portie (wettelijke erfdeel)?</legend>
+          <label><input required type="radio" name="wettelijkeErfdeel-0" value="yes"> Ja</label>
+          <label><input required type="radio" name="wettelijkeErfdeel-0" value="no"> Nee</label>
+        </fieldset>
+
+      </fieldset>
+    </div>
+
+    <!-- Template voor nieuwe verkrijger -->
+    <template id="verkrijger-template">
+      <fieldset class="verkrijger">
+        <legend>Nieuwe Verkrijger</legend>
+
+        <label>Bsn/RSIN</label>
+        <input type="text" name="bsnRsin[]" pattern="[0-9]{9}" maxlength="9" inputmode="numeric" required>
+
+        <label>Voorletter(s)</label>
+        <input maxlength="9" required type="text" name="voorletters[]">
+
+        <label>Tussen-voegsel(s)</label>
+        <input maxlength="8" type="text" name="tussen-voegsel[]">
+
+        <label>Achternaam</label>
+        <input maxlength="10" required type="text" name="achternaam[]">
+
+        <fieldset>
+          <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
+          <label><input required type="radio" name="hele-vermogen[]" value="yes"> Ja</label>
+          <label><input required type="radio" name="hele-vermogen[]" value="no"> Nee</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Doet deze verkrijger een beroep op diens legitieme portie (wettelijke erfdeel)?</legend>
+          <label><input required type="radio" name="wettelijkeErfdeel[]" value="yes"> Ja</label>
+          <label><input required type="radio" name="wettelijkeErfdeel[]" value="no"> Nee</label>
+        </fieldset>
+
+      </fieldset>
+    </template>
+
+    <div>
+      <button type="button" id="voeg-verkrijger-toe">Voeg verkrijger toe</button>
+    </div>
+
+  </form>
+
+  <footer>
+    <div> 
+      <a href="index.html">Terug</a>
+      <button type="submit">Verzenden</button>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</main>
+</body>
+
+</html>
